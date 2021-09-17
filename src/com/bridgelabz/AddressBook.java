@@ -36,33 +36,53 @@ public class AddressBook {
 	public static void editData() {
 		String editFirstName, editLastName, editPhoneNumber, editEmail, editAddress, editCity, editState;
 		int editZipCode;
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("You can edit contact by using name :");
 		System.out.print("Enter the name : ");
 		String name = sc.nextLine();
 		
 		 for (int i = 0; i < contact.size(); i++) {
-				if (contact.get(i).getFirst_name().equalsIgnoreCase(name)) {
-					System.out.println("find : " + contact.get(i).getFirst_name());
-					System.out.print("Enter first name : ");
-		       		editFirstName = sc.nextLine();
-		       		System.out.print("Enter last name : ");
-		       		editLastName = sc.nextLine();
-		       		System.out.print("Enter phone number : ");
-		       		editPhoneNumber = sc.nextLine();
-		       		System.out.print("Enter email : ");
-		       		editEmail = sc.nextLine();
-		       		System.out.print("Enter address : ");
-		       		editAddress = sc.nextLine();
-		       		System.out.print("Enter city : ");
-		       		editCity = sc.nextLine();
-		       		System.out.print("Enter state : ");
-		       		editState = sc.nextLine();
-		       		System.out.print("Enter zip code : ");
-		       		editZipCode = sc.nextInt();
-		       		contact.set(i,new AddessBookData(editFirstName, editLastName, editPhoneNumber, editEmail, editAddress, editCity, editState, editZipCode));
-	            }
-	        }
+			if (contact.get(i).getFirst_name().equalsIgnoreCase(name)) {
+				System.out.println("Found : " + contact.get(i).getFirst_name());
+				System.out.print("Enter first name : ");
+	       		editFirstName = sc.nextLine();
+	       		System.out.print("Enter last name : ");
+	       		editLastName = sc.nextLine();
+	       		System.out.print("Enter phone number : ");
+	       		editPhoneNumber = sc.nextLine();
+	       		System.out.print("Enter email : ");
+	       		editEmail = sc.nextLine();
+	       		System.out.print("Enter address : ");
+	       		editAddress = sc.nextLine();
+	       		System.out.print("Enter city : ");
+	       		editCity = sc.nextLine();
+	       		System.out.print("Enter state : ");
+	       		editState = sc.nextLine();
+	       		System.out.print("Enter zip code : ");
+	       		editZipCode = sc.nextInt();
+	       		contact.set(i,new AddessBookData(editFirstName, editLastName, editPhoneNumber, editEmail, editAddress, editCity, editState, editZipCode));
+        	}
+		 }
+	}
+	
+	public static void deleteData() {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("You can delete contact by using name :");
+		System.out.print("Enter the name : ");
+		String deleteName = sc.nextLine();
+		
+		 for (int i = 0; i < contact.size(); i++) {
+            if (contact.get(i).getFirst_name().equalsIgnoreCase(deleteName)) {
+                System.out.println("Found : " + contact.get(i).getFirst_name());
+                if(contact.remove(i) != null) {
+                	System.out.println("Deleted!");
+                }else {
+                	System.out.println("Error at deleteing.");
+                }
+            }
+        }
 	}
 
 	public static void showAllContacts() {
@@ -78,6 +98,7 @@ public class AddressBook {
 		System.out.println("");
 		System.out.println("press 1 to create contact :");
 		System.out.println("press 2 to edit contact :");
+		System.out.println("press 3 to delete contact :");
 		System.out.println("press 0 to exit program :");
 		int res = sc1.nextInt();
 		switch (res) {
@@ -87,6 +108,10 @@ public class AddressBook {
 			break;
 		case 2:
 			editData();
+			repeat();
+			break;
+		case 3:
+			deleteData();
 			repeat();
 			break;
 		case 0:
