@@ -22,6 +22,13 @@ public class AddessBookData {
 		this.zipCode = zipCode;
 	}
 	
+	@Override
+	public String toString() {
+		return "AddessBookData [first_name=" + first_name + ", last_name=" + last_name + ", phoneNumber=" + phoneNumber
+				+ ", email=" + email + ", address=" + address + ", city=" + city + ", state=" + state + ", zipCode="
+				+ zipCode + "]";
+	}
+
 	public String getFirst_name() {
 		return first_name;
 	}
